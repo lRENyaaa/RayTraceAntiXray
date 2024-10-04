@@ -93,7 +93,7 @@ public final class RayTraceAntiXray extends JavaPlugin {
         RayTraceTimerTask rayTraceTimerTask = new RayTraceTimerTask(this);
         long tickSpeed = Math.max(config.getLong("settings.anti-xray.ms-per-ray-trace-tick"), 1L);
         if (leaf) {
-            Bukkit.getScheduler().runTaskTimerAsynchronously(this, rayTraceTimerTask,0L, tickSpeed);
+            Bukkit.getScheduler().runTaskTimerAsynchronously(this, rayTraceTimerTask,0L, Math.max(1, tickSpeed / 50 ));
         } else {
             timer = new Timer("RayTraceAntiXray tick thread", true);
             timer.schedule(rayTraceTimerTask, 0L, tickSpeed);
